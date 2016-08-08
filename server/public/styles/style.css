@@ -1,0 +1,17 @@
+.container {
+    width: 800px;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+h1 {
+    color: red;
+}
+.clickNext {
+    width: 10px;
+    border: 1px solid black;
+}
+.buttons {
+    width: 172px;
+    margin: 0 auto;
+    border: 1px solid purple;
+}
