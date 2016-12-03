@@ -1,50 +1,61 @@
 $(document).ready(function() {
 
-    var studentNum = 0;
     loadData();
+}); // end doc ready
 
-    function loadData() {
-        var dataToLoad = $.ajax({
-            type: "GET",
-            url: "/data",
-            success: function(data) {
-                for (var i = 0; i < data.omicron.length; i++) {
-                    $('.container').append('<li>' + data.omicron[i].name + '</li>',
-                        '<h3>' + 'Git UserName: ' + data.omicron[i].git_username + '</h3>',
-                        '<h4>' + 'Message: ' + data.omicron[i].shoutout + '</h4>');
-                    // dataToLoad = data.omicron;
-                    console.log(data.omicron[i].name);
+//*****************************
+//         Variables
+//*****************************
+var studentNum = 0;
 
-                }
-                nextStudent();
-                prevStudent();
-            }
-        });
+
+//*****************************
+//         Functions
+//*****************************
+
+// this loadData function is very important
+function loadData() {
+    var dataToLoad = $.ajax({
+        type: "GET",
+        url: "/data",
+        success: function(data) {
+            loadStudentData(data);
+        }
+    });
+}
+
+function loadStudentData(data) {
+    var i = 0;
+    loadOne();
+    setInterval(loadOne, 5000);
+
+    function loadOne() {
+        i++;
+        $('.textView').empty();
+        $('.textView').append('<p class="name">' + data.omicron[i].name + '</p>',
+            '<p class="gitHub">' + 'Git UserName: ' + data.omicron[i].git_username + '</p>',
+            '<p class="message">' + 'Message: ' + data.omicron[i].shoutout + '</p>');
+        console.log(data.omicron[i].name);
     }
+}
 
-    // for loop to run through all 17 entries
 
-    //functions we might need
+function nextStudent() {
+    $('.buttons').append('<button class="next">Click for Next</button>');
+}
 
-    function loadStudentData() {}
+function prevStudent() {
+    $('.buttons').append('<button class="prev">Click for Prev</button>');
+    $('.prev').on('click', function() {
 
-    function nextStudent() {
-        $('.buttons').append('<button class="next">Click for Next</button>');
-    }
+    });
+}
 
-    function prevStudent() {
-        $('.buttons').append('<button class="prev">Click for Prev</button>');
-        $('.prev').on('click', function() {
-
-        });
-    }
-
-    function showStudentInfo() {
-        //name
-        //git_username
-        //message
-    }
-});
+function showStudentInfo() {
+    //name
+    //git_username
+    //message
+}
 
 
 // success: function(response) {
@@ -58,17 +69,4 @@ $(document).ready(function() {
 // },
 // error: function() {
 //   console.log('Error with request');
-// }
-
-// var i = 1;
-//
-// function newSpy() {
-//     $("<div />", {
-//         "class": "spy",
-//         id: "newSpy" + i
-//     }).appendTo(".newContainer").text("New Spy" + i);
-//     $(".spy").last().append("<button class='deleter'>Delete Spy</button>");
-//     $(".spy").last().append("<button class='changer'>Change</button>");
-//     $(".spy").last().append("<p style='display: inline'>Total Spies Hired:" + i + "</p>");
-//     i++;
 // }

@@ -1,17 +1,39 @@
-.container {
+h1 {
+    color: red;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.textView {
     width: 800px;
     border: 1px solid black;
     margin: 0 auto;
 }
-h1 {
-    color: red;
+.name {
+  font-size: 1.25em;
+  font-weight: bold;
+  text-decoration: underline;
 }
-.clickNext {
-    width: 10px;
-    border: 1px solid black;
-}
+
 .buttons {
-    width: 172px;
+    padding: 2%;
+    width: 50%;
     margin: 0 auto;
-    border: 1px solid purple;
+}
+
+.buttons>* {
+    font-size: 2em;
+    white-space: nowrap;
+}
+
+.nextButton {
+    float: right;
+}
+
+.prevButton {
+    float: left;
 }
