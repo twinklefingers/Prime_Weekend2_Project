@@ -58,8 +58,8 @@ function carousalRules(data) {
 function showStudentData(data) {
     $('.textView').empty();
     $('.textView').append('<p class="name">' + data.omicron[i].name + '</p>',
-        '<p class="gitHub">' + 'Git UserName: ' + data.omicron[i].git_username + '</p>',
-        '<p class="message">' + 'Message: ' + data.omicron[i].shoutout + '</p>');
+        '<p class="gitHub">' + 'GitHub: ' + '<a class="gitLink" href="http://www.github.com/' + data.omicron[i].git_username + '" target="_blank">' + data.omicron[i].git_username + '</a>' + '</p>',
+        '<p class="message">' + data.omicron[i].shoutout + '</p>');
     // carousalRules(data);
     // console.log("showData", data.omicron[i].name, i);
 }
