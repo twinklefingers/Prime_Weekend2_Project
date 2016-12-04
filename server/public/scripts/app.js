@@ -10,7 +10,7 @@ $(document).ready(function() {
 //*****************************
 //         Variables
 //*****************************
-var i = 0;
+var i = -1;
 var myTimer = setInterval(loadData, 5000);
 // var data = {};
 
@@ -25,22 +25,19 @@ function loadData() {
         type: "GET",
         url: "/data",
         success: function(data) {
+            carousalRules(data);
             showStudentData(data);
-            // carousalRules(data);
         }
     });
 }
 
 function showStudentData(data) {
-    // i++;
-    var studentName = data.omicron[i].name;
-    console.log(studentName, i);
     $('.textView').empty();
-    $('.textView').append('<p class="name">' + studentName + '</p>',
+    $('.textView').append('<p class="name">' + data.omicron[i].name + '</p>',
         '<p class="gitHub">' + 'Git UserName: ' + data.omicron[i].git_username + '</p>',
         '<p class="message">' + 'Message: ' + data.omicron[i].shoutout + '</p>');
-    carousalRules(data);
-    console.log("showData", i);
+    // carousalRules(data);
+    console.log("showData", data.omicron[i].name, i);
 }
 
 function next() {
@@ -60,12 +57,19 @@ function prev() {
 }
 
 function carousalRules(data) {
-    // if the carousal is between 0 and the length of messages, show the person's info and increase counter variable i
-    if (i >= 0 && i <= data.omicron.length) {
-        i++;
-        console.log("moving forward", i);
-        // showStudentData(data);
-    }
+  // if the carousal is between 0 and the length of messages, show the person's info and increase counter variable i
+  if (i >= -1 && i <= data.omicron.length) {
+      // showStudentData(data);
+      i++;
+      console.log("moving forward", i);
+  }
+
+  // going backwards, if i less than 0, it goes to the end
+  // before spinning back around in a positive direction
+  if (i < -1) {
+      i = data.omicron.length - 1; // i=15
+      console.log("going backwards", i);
+  }
 
     // if i is greater than the length of data.omicron -1 (16),
     // i resets at 0
@@ -74,12 +78,7 @@ function carousalRules(data) {
         console.log("starting over", i);
     }
 
-    // going backwards, if i less than 0, it goes to the end
-    // before spinning back around in a positive direction
-    if (i < 0) {
-        i = data.omicron.length - 1;
-        console.log("going backwards", i);
-    }
-    console.log("carousal position: ", i);
 
+
+    console.log("carousal position: ", i);
 }
