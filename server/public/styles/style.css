@@ -1,5 +1,7 @@
 h1 {
-    color: red;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 p {
@@ -9,9 +11,10 @@ p {
 }
 
 .textView {
-    width: 800px;
+    width: 80%;
     border: 1px solid black;
     margin: 0 auto;
+    padding: 1%;
 }
 .name {
   font-size: 1.25em;
@@ -28,6 +31,7 @@ p {
 .buttons>* {
     font-size: 2em;
     white-space: nowrap;
+    background-color: pink;
 }
 
 .nextButton {
@@ -36,4 +40,10 @@ p {
 
 .prevButton {
     float: left;
+}
+
+@media screen and (max-width: 1000px) {
+  .buttons>* {
+      font-size: 1em;
+    }
 }
